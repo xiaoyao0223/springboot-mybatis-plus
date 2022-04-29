@@ -1,0 +1,32 @@
+server:
+  port: 8081
+  error:
+    path: /
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mybatis_plus?&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+#    日期格式化
+    serialization:
+      write-dates-as-timestamps: false
+mybatis-plus:
+  configuration:
+#    开启驼峰命名
+    map-underscore-to-camel-case: true
+#    NONE 表示取消自动映射；PARTIAL 只会自动映射没有定义嵌套结果集映射的结果集。 FULL 会自动映射任意复杂的结果集（无论是否嵌套）。默认是partial，这是一种全局设置
+    auto-mapping-behavior: full
+#    它只能输出到控制台窗口单不能写入文件
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mappers/**/*Mapper.xml
+  global-config:
+#    逻辑删除配置
+    db-config:
+#      未删除
+      logic-not-delete-value: 1
+#      删除
+      logic-delete-value: 0
